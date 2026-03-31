@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Igreja Ministério Batista Farol de Cristo</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="https://sdk.mercadopago.com/js/v2"></script>
+</head>
+<body>
+
+  <!-- HEADER / NAVBAR -->
+  <header class="header">
+    <div class="container nav-container">
+      <div class="logo">
+        <img id="header-logo" src="images/logo.jpg" alt="Farol de Cristo" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
+        <span class="logo-icon logo-icon-fallback" style="display:none"><i class="fa-solid fa-lightbulb"></i></span>
+      </div>
+      <nav class="nav-links">
+        <a href="#lideranca">Liderança</a>
+        <a href="#informacoes">Informações</a>
+        <a href="#doacoes" class="btn-nav-donate">Doações</a>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#lideranca" onclick="closeMenu()">Liderança</a>
+      <a href="#informacoes" onclick="closeMenu()">Informações</a>
+      <a href="#doacoes" onclick="closeMenu()">Doações</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="hero-tag">Bem-vindo à</span>
+      <img id="hero-logo" src="images/logo.jpg" alt="Farol de Cristo" class="hero-logo" />
+      <div class="hero-buttons">
+        <a href="#informacoes" class="btn btn-primary">Conheça-nos</a>
+        <a href="#doacoes" class="btn btn-secondary">Contribua</a>
+      </div>
+    </div>
+    <div class="hero-wave">
+      <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#ffffff" d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- VERSÍCULO DESTAQUE -->
+  <section class="verse-banner">
+    <div class="container">
+      <blockquote>
+        <i class="fa-solid fa-quote-left quote-icon"></i>
+        <p>"Vós sois a luz do mundo. Não se pode esconder uma cidade edificada sobre um monte."</p>
+        <cite>— Mateus 5:14</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- LIDERANÇA -->
+  <section class="section" id="lideranca">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Nossa</span>
+        <h2>Liderança</h2>
+        <div class="section-divider"></div>
+        <p class="section-desc">Conheça os pastores e líderes que conduzem nossa comunidade com fé e dedicação.</p>
+      </div>
+      <div class="leader-panel">
+
+        <!-- Foto conjunta -->
+        <div class="leader-photo-wrap">
+            <img src="images/foto-pastores.jpg" alt="Pr Luiz Araújo e Pra Mariana Sapucaia" class="leader-photo" />
+        </div>
+
+        <!-- Informações dos pastores -->
+        <div class="leader-info">
+          <div class="card-badge" style="margin-bottom:20px;">Pastores Presidentes</div>
+
+          <div class="pastor-item">
+            <div class="pastor-avatar">
+              <i class="fa-solid fa-user-tie"></i>
+            </div>
+            <div class="pastor-text">
+              <h3>Pr. Luiz Araújo</h3>
+              <p>Pastor Presidente responsável pela visão e direção espiritual da Igreja Ministério Batista Farol de Cristo em Salvador, BA.</p>
+            </div>
+          </div>
+
+          <div class="pastor-divider"></div>
+
+          <div class="pastor-item">
+            <div class="pastor-avatar pastor-avatar-f">
+              <i class="fa-solid fa-user"></i>
+            </div>
+            <div class="pastor-text">
+              <h3>Pra. Mariana Sapucaia</h3>
+              <p>Pastora Presidente co-líder da congregação, com dedicação especial ao ministério de famílias e mulheres.</p>
+            </div>
+          </div>
+
+          <div class="leader-social">
+            <a href="https://www.facebook.com/MBFCoficial" target="_blank" title="Facebook">
+              <i class="fa-brands fa-facebook"></i> MBFCoficial
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- INFORMAÇÕES GERAIS -->
+  <section class="section section-alt" id="informacoes">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Saiba Mais</span>
+        <h2>Informações Gerais</h2>
+        <div class="section-divider"></div>
+        <p class="section-desc">Tudo o que você precisa saber para participar da nossa comunidade.</p>
+      </div>
+      <div class="info-grid info-grid-2">
+
+        <div class="info-card">
+          <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+          <h4>Endereço</h4>
+          <p>
+            Rua Orlando Imbassahy, SN, Casa A3<br/>
+            Quadra 341 — Stella Maris<br/>
+            Salvador, BA
+          </p>
+        </div>
+
+        <div class="info-card">
+          <div class="info-icon"><i class="fa-brands fa-facebook"></i></div>
+          <h4>Redes Sociais</h4>
+          <p>Acompanhe nossas novidades e mensagens nas redes sociais.</p>
+          <a href="https://www.facebook.com/MBFCoficial" target="_blank" class="info-link">
+            <i class="fa-brands fa-facebook"></i> /MBFCoficial
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- DOAÇÕES -->
+  <section class="section" id="doacoes">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Contribua</span>
+        <h2>Doações</h2>
+        <div class="section-divider"></div>
+        <p class="section-desc">Sua contribuição faz a diferença e ajuda a expandir o Reino de Deus em Salvador e além.</p>
+      </div>
+
+      <div class="donate-grid donate-grid-2col">
+
+        <!-- Widget de Doação -->
+        <div class="give-widget-card">
+          <div class="give-widget">
+
+            <div class="give-header">
+              <div class="give-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
+              <h3>Faça sua Doação</h3>
+              <p>Escolha um valor ou digite o que desejar contribuir</p>
+            </div>
+
+            <div class="give-amounts">
+              <button class="give-amount-btn" data-value="10" onclick="selectAmount(this, 10)">R$ 10</button>
+              <button class="give-amount-btn" data-value="25" onclick="selectAmount(this, 25)">R$ 25</button>
+              <button class="give-amount-btn active" data-value="50" onclick="selectAmount(this, 50)">R$ 50</button>
+              <button class="give-amount-btn" data-value="100" onclick="selectAmount(this, 100)">R$ 100</button>
+              <button class="give-amount-btn" data-value="200" onclick="selectAmount(this, 200)">R$ 200</button>
+              <button class="give-amount-btn" data-value="custom" onclick="selectAmount(this, 'custom')">Outro valor</button>
+            </div>
+
+            <div class="give-custom-wrap" id="give-custom-wrap">
+              <label>Digite o valor desejado:</label>
+              <div class="give-custom-input">
+                <span class="give-currency">R$</span>
+                <input type="number" id="give-custom-value" min="1" placeholder="0,00" oninput="updateCustomAmount(this.value)" />
+              </div>
+            </div>
+
+            <div class="give-summary">
+              <span>Valor selecionado:</span>
+              <strong id="give-selected-display">R$ 50,00</strong>
+            </div>
+
+            <button class="give-submit-btn" onclick="openDonateModal()">
+              <i class="fa-solid fa-lock"></i> Continuar Doação
+            </button>
+
+            <div class="give-methods">
+              <span><i class="fa-brands fa-pix"></i> PIX</span>
+              <span><i class="fa-solid fa-credit-card"></i> Cartão</span>
+              <span><i class="fa-solid fa-barcode"></i> Boleto</span>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Card do versículo -->
+        <div class="donate-card donate-verse">
+          <div class="donate-icon"><i class="fa-solid fa-heart"></i></div>
+          <h3>Por que Contribuir?</h3>
+          <blockquote class="donate-quote">
+            "Cada um contribua segundo propôs no seu coração; não com tristeza, nem por necessidade; porque Deus ama ao que dá com alegria."
+            <cite>— 2 Coríntios 9:7</cite>
+          </blockquote>
+        </div>
+
+      </div>
+
+      <!-- Modal Mercado Pago -->
+      <!-- Modal com Checkout Bricks embutido -->
+      <div class="mp-modal-overlay" id="mp-modal-overlay" onclick="closeDonateModal(event)">
+        <div class="mp-modal mp-modal-bricks">
+          <button class="mp-modal-close" onclick="closeDonateModal()">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+
+          <!-- Estado: carregando -->
+          <div class="mp-loading" id="mp-loading">
+            <div class="mp-spinner"></div>
+            <p>Preparando doação...</p>
+          </div>
+
+          <!-- Estado: erro de configuração -->
+          <div class="mp-config-error" id="mp-config-error" style="display:none">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <h4>Configuração pendente</h4>
+            <p>As credenciais do Mercado Pago ainda não foram configuradas.<br/>Consulte o arquivo <strong>.env.example</strong> e faça o deploy no Vercel.</p>
+            <a href="https://link.mercadopago.com.br/mbfcdoacao" target="_blank" class="mp-modal-donate-btn" style="margin-top:16px;">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> Ir para o Mercado Pago
+            </a>
+          </div>
+
+          <!-- Estado: sucesso -->
+          <div class="mp-success" id="mp-success" style="display:none">
+            <div class="mp-success-icon"><i class="fa-solid fa-circle-check"></i></div>
+            <h4>Obrigado pela sua doação!</h4>
+            <p id="mp-success-msg">Que Deus abençoe ricamente sua contribuição.</p>
+            <button class="give-submit-btn" onclick="closeDonateModal()" style="margin-top:20px;width:100%">Fechar</button>
+          </div>
+
+          <!-- Container do Checkout Bricks -->
+          <div id="mp-bricks-container" style="display:none">
+            <div class="mp-modal-header">
+              <h3 class="mp-modal-title">Quase lá...</h3>
+              <p>Doação: <strong id="mp-modal-value">R$ 50,00</strong></p>
+            </div>
+            <div id="paymentBrick_container"></div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-logo">
+        <img src="images/logo.jpg" alt="Farol de Cristo" class="logo-img footer-logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
+        <span class="logo-icon footer-icon" style="display:none"><i class="fa-solid fa-lightbulb"></i></span>
+      </div>
+      <div class="footer-links">
+        <a href="#lideranca">Liderança</a>
+        <a href="#informacoes">Informações</a>
+        <a href="#doacoes">Doações</a>
+        <a href="https://www.facebook.com/MBFCoficial" target="_blank">Facebook</a>
+      </div>
+      <p class="footer-copy">© 2026 Igreja Ministério Batista Farol de Cristo. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <img id="flying-logo" src="images/logo.jpg" alt="Farol de Cristo" class="flying-logo" />
+
+  <script>
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+    });
+    function closeMenu() {
+      mobileMenu.classList.remove('open');
+    }
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    // PIX tabs
+    function showPixTab(tab, btn) {
+      document.querySelectorAll('.pix-panel').forEach(p => p.classList.add('hidden'));
+      document.querySelectorAll('.pix-tab').forEach(b => b.classList.remove('active'));
+      document.getElementById('pix-' + tab).classList.remove('hidden');
+      btn.classList.add('active');
+    }
+
+    // ── Widget Give ──────────────────────────────────────────
+    let selectedAmount = 50;
+
+    function selectAmount(btn, value) {
+      document.querySelectorAll('.give-amount-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const customWrap = document.getElementById('give-custom-wrap');
+      if (value === 'custom') {
+        customWrap.style.display = 'flex';
+        const customVal = parseFloat(document.getElementById('give-custom-value').value);
+        selectedAmount = customVal > 0 ? customVal : 0;
+      } else {
+        customWrap.style.display = 'none';
+        selectedAmount = value;
+      }
+      updateDisplay();
+    }
+
+    function updateCustomAmount(val) {
+      selectedAmount = parseFloat(val) || 0;
+      updateDisplay();
+    }
+
+    function updateDisplay() {
+      const fmt = selectedAmount > 0
+        ? 'R$ ' + selectedAmount.toFixed(2).replace('.', ',')
+        : 'R$ 0,00';
+      document.getElementById('give-selected-display').textContent = fmt;
+    }
+
+    let mpBricksController = null;
+
+    async function openDonateModal() {
+      if (selectedAmount <= 0) {
+        document.getElementById('give-custom-value').focus();
+        return;
+      }
+
+      // Atualiza valor no modal e abre
+      const fmt = 'R$ ' + selectedAmount.toFixed(2).replace('.', ',');
+      document.getElementById('mp-modal-value').textContent = fmt;
+      document.getElementById('mp-modal-overlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+
+      // Mostra loading, oculta outros estados
+      document.getElementById('mp-loading').style.display = 'flex';
+      document.getElementById('mp-config-error').style.display = 'none';
+      document.getElementById('mp-bricks-container').style.display = 'none';
+
+      // Destrói Bricks anterior se existir
+      if (mpBricksController) {
+        try { await mpBricksController.unmount(); } catch(e) {}
+        mpBricksController = null;
+      }
+      document.getElementById('paymentBrick_container').innerHTML = '';
+
+      try {
+        // Chama a API para criar preferência com o valor selecionado
+        const res = await fetch('/api/create-preference', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ amount: selectedAmount })
+        });
+
+        if (!res.ok) throw new Error('API indisponível');
+
+        const { preferenceId } = await res.json();
+
+        // Inicializa o MP SDK com a Public Key
+        const mp = new MercadoPago('TEST-ba41ec3c-ba43-48c6-8228-97e094dec4eb', {
+          locale: 'pt-BR'
+        });
+
+        const bricksBuilder = mp.bricks();
+
+        mpBricksController = await bricksBuilder.create('payment', 'paymentBrick_container', {
+          initialization: {
+            amount: selectedAmount,
+            preferenceId: preferenceId,
+          },
+          customization: {
+            paymentMethods: {
+              creditCard: 'all',
+              debitCard: 'all',
+              ticket: 'all',
+              bankTransfer: 'all',
+              atm: 'all',
+            },
+            visual: {
+              texts: {
+                formTitle: 'Meios de doação',
+                formSubmit: 'Doar',
+                expirationDate: {
+                  label: 'Data de Vencimento',
+                  placeholder: 'MM/AA',
+                },
+                paymentMethods: {
+                  pixValueProp: 'Após receber o código Pix, você deve concluir sua doação.',
+                },
+              },
+              style: {
+                theme: 'default',
+                customVariables: {
+                  baseColor: '#009ee3',
+                  baseColorFirstVariant: '#0081c8',
+                  baseColorSecondVariant: '#005c8e',
+                }
+              }
+            }
+          },
+          callbacks: {
+            onReady: () => {
+              document.getElementById('mp-loading').style.display = 'none';
+              document.getElementById('mp-bricks-container').style.display = 'block';
+
+              const container = document.getElementById('paymentBrick_container');
+
+              // Substitui textos fixos gerados pelo SDK que não têm chave de customização
+              const TARGET = 'Após receber o código Pix, você deve concluir o seu pagamento.';
+              const REPLACE = 'Após receber o código Pix, você deve concluir sua doação.';
+              const replaceText = (node) => {
+                if (node.nodeType === Node.TEXT_NODE && node.textContent.includes(TARGET)) {
+                  node.textContent = node.textContent.replace(TARGET, REPLACE);
+                } else {
+                  node.childNodes.forEach(replaceText);
+                }
+              };
+              replaceText(container);
+
+              // Corrige o campo de Data de Vencimento para aceitar MM/AA
+              const fixExpiryField = () => {
+                const inputs = container.querySelectorAll('input');
+                inputs.forEach(input => {
+                  // Identifica o campo pelo placeholder, id ou label associado
+                  const ph = (input.getAttribute('placeholder') || '').toLowerCase();
+                  const id = (input.id || '').toLowerCase();
+                  const ariaLabel = (input.getAttribute('aria-label') || '').toLowerCase();
+                  const isExpiry = ph.includes('mm') || id.includes('expir') ||
+                                   ariaLabel.includes('vencimento') || ariaLabel.includes('expir');
+
+                  if (isExpiry && !input._expiryPatched) {
+                    input._expiryPatched = true;
+                    input.setAttribute('placeholder', 'MM/AA');
+                    input.setAttribute('maxlength', '5');
+
+                    input.addEventListener('input', function () {
+                      let raw = this.value.replace(/\D/g, '').slice(0, 4);
+                      let formatted = raw.length > 2
+                        ? raw.slice(0, 2) + '/' + raw.slice(2)
+                        : raw;
+                      if (this.value !== formatted) this.value = formatted;
+                    });
+                  }
+                });
+              };
+
+              fixExpiryField();
+              const observer = new MutationObserver(() => {
+                replaceText(container);
+                fixExpiryField();
+              });
+              observer.observe(container, { childList: true, subtree: true, characterData: true });
+            },
+            onSubmit: async ({ selectedPaymentMethod, formData }) => {
+              try {
+                // Mostra loading enquanto processa
+                document.getElementById('mp-bricks-container').style.display = 'none';
+                const loadingEl = document.getElementById('mp-loading');
+                loadingEl.style.display = 'flex';
+                loadingEl.querySelector('p').textContent = 'Processando doação...';
+
+                const res = await fetch('/api/process-payment', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({
+                    ...formData,
+                    transaction_amount: selectedAmount,
+                  }),
+                });
+
+                loadingEl.style.display = 'none';
+                const data = await res.json();
+
+                if (data.status === 'approved') {
+                  document.getElementById('mp-success-msg').textContent =
+                    'Sua doação foi confirmada! Que Deus abençoe sua contribuição.';
+                  document.getElementById('mp-success').style.display = 'flex';
+                } else if (data.status === 'pending' || data.status === 'in_process') {
+                  document.getElementById('mp-success-msg').textContent =
+                    'Sua doação está sendo processada. Em breve você receberá a confirmação.';
+                  document.getElementById('mp-success').style.display = 'flex';
+                } else if (data.status === 'rejected') {
+                  // Mostra mensagem de rejeição sem fechar o modal
+                  document.getElementById('mp-bricks-container').style.display = 'block';
+                  // O próprio Bricks já exibe a mensagem de erro no formulário
+                  // só mostra alerta se o detail for genérico
+                  const detail = data.status_detail || '';
+                  const msgs = {
+                    'cc_rejected_bad_filled_date':         'Data de vencimento inválida.',
+                    'cc_rejected_bad_filled_security_code':'Código de segurança inválido.',
+                    'cc_rejected_bad_filled_other':        'Dados do cartão incorretos.',
+                    'cc_rejected_insufficient_amount':     'Saldo insuficiente.',
+                    'cc_rejected_card_disabled':           'Cartão bloqueado. Contate seu banco.',
+                  };
+                  const msg = msgs[detail] || 'Pagamento recusado. Verifique os dados ou tente outro cartão.';
+                  alert(msg);
+                } else {
+                  alert('Resposta inesperada: ' + JSON.stringify(data));
+                  document.getElementById('mp-bricks-container').style.display = 'block';
+                }
+              } catch (err) {
+                console.error('Erro ao processar doação:', err);
+                document.getElementById('mp-loading').style.display = 'none';
+                document.getElementById('mp-config-error').style.display = 'flex';
+              }
+            },
+            onError: (error) => {
+              console.error('Erro Bricks:', error);
+              document.getElementById('mp-loading').style.display = 'none';
+              document.getElementById('mp-config-error').style.display = 'flex';
+            },
+          },
+        });
+
+      } catch (err) {
+        console.warn('Usando fallback — API não disponível localmente:', err.message);
+        document.getElementById('mp-loading').style.display = 'none';
+        document.getElementById('mp-config-error').style.display = 'flex';
+      }
+    }
+
+    function closeDonateModal(e) {
+      if (!e || e.target === document.getElementById('mp-modal-overlay') || !e.target.closest) {
+        document.getElementById('mp-modal-overlay').classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    }
+
+    // Copy to clipboard
+    function copyText(text, btn) {
+      navigator.clipboard.writeText(text).then(() => {
+        btn.innerHTML = '<i class="fa-solid fa-check"></i> Copiado!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.innerHTML = '<i class="fa-solid fa-copy"></i> Copiar';
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    }
+
+    // Header scroll effect
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('.header');
+      header.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // ── Flying Logo ──────────────────────────────────────────
+    window.addEventListener('load', function () {
+      const heroLogoEl   = document.getElementById('hero-logo');
+      const headerLogoEl = document.getElementById('header-logo');
+      const flyingLogo   = document.getElementById('flying-logo');
+      const heroTag      = document.querySelector('.hero-tag');
+      const THRESHOLD    = 30;
+      const EASE         = 'cubic-bezier(.4,0,.2,1)';
+      const DURATION     = '.5s';
+      const FLY_TRANS    = `top ${DURATION} ${EASE}, left ${DURATION} ${EASE}, width ${DURATION} ${EASE}, height ${DURATION} ${EASE}`;
+      const SPACE_TRANS  = `max-height ${DURATION} ${EASE}, margin-bottom ${DURATION} ${EASE}`;
+      let scrolled       = false;
+
+      // Grava posição e dimensões originais do hero logo
+      const heroInitial     = heroLogoEl.getBoundingClientRect();
+      const heroOrigH       = heroLogoEl.offsetHeight;
+      const heroOrigMarginB = 36; // margin-bottom definido no CSS
+
+      // Prepara hero logo para animação de colapso
+      heroLogoEl.style.maxHeight     = heroOrigH + 'px';
+      heroLogoEl.style.marginBottom  = heroOrigMarginB + 'px';
+      heroLogoEl.style.overflow      = 'hidden';
+      heroLogoEl.style.visibility    = 'hidden';
+
+      function snapFlying(rect, animate) {
+        flyingLogo.style.transition = animate ? FLY_TRANS : 'none';
+        flyingLogo.style.top    = rect.top    + 'px';
+        flyingLogo.style.left   = rect.left   + 'px';
+        flyingLogo.style.width  = rect.width  + 'px';
+        flyingLogo.style.height = rect.height + 'px';
+      }
+
+      // Inicializa o flying logo sobre o hero logo
+      snapFlying(heroInitial, false);
+      flyingLogo.style.opacity = '1';
+
+      window.addEventListener('scroll', function () {
+        const sy = window.scrollY;
+
+        if (sy > THRESHOLD && !scrolled) {
+          scrolled = true;
+
+          const heroNow    = heroLogoEl.getBoundingClientRect();
+          const headerRect = headerLogoEl.getBoundingClientRect();
+
+          // Snap flying para posição visual atual do hero
+          snapFlying(heroNow, false);
+          flyingLogo.getBoundingClientRect();
+
+          // Anima flying para o header E colapsa o espaço simultaneamente
+          snapFlying(headerRect, true);
+          heroLogoEl.style.transition  = SPACE_TRANS;
+          heroLogoEl.style.maxHeight   = '0';
+          heroLogoEl.style.marginBottom = '0';
+          // Fade out da frase
+          heroTag.style.transition = `opacity ${DURATION} ${EASE}`;
+          heroTag.style.opacity    = '0';
+          heroTag.style.pointerEvents = 'none';
+
+        } else if (sy <= THRESHOLD && scrolled) {
+          scrolled = false;
+
+          const headerRect = headerLogoEl.getBoundingClientRect();
+
+          // Snap flying para o header
+          snapFlying(headerRect, false);
+          flyingLogo.getBoundingClientRect();
+
+          // Expande o espaço E voa de volta simultaneamente
+          heroLogoEl.style.transition   = SPACE_TRANS;
+          heroLogoEl.style.maxHeight    = heroOrigH + 'px';
+          heroLogoEl.style.marginBottom = heroOrigMarginB + 'px';
+
+          snapFlying(heroInitial, true);
+          // Fade in da frase
+          heroTag.style.transition    = `opacity ${DURATION} ${EASE}`;
+          heroTag.style.opacity       = '1';
+          heroTag.style.pointerEvents = '';
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

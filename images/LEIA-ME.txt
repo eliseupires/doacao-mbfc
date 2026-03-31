@@ -1,0 +1,4 @@
+Coloque aqui a foto conjunta do Pr Luiz Araújo e Pra Mariana Sapucaia.
+Nome sugerido para o arquivo: foto-pastores.jpg (ou .png)
+Após colocar a imagem, atualize o src na tag <img> do index.html:
+  src="images/foto-pastores.jpg"

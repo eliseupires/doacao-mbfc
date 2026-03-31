@@ -1,0 +1,11 @@
+{
+  "name": "farol-de-cristo",
+  "version": "1.0.0",
+  "description": "Site Igreja Ministério Batista Farol de Cristo",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "mercadopago": "^2.0.0"
+  }
+}
