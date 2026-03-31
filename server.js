@@ -91,6 +91,24 @@ async function handleCreatePreference(req, res) {
   }
 }
 
+// ─── Handler de status do pagamento ──────────────────────────────────
+async function handlePaymentStatus(req, res) {
+  const id = new URL('http://x' + req.url).searchParams.get('id');
+  if (!id) { res.writeHead(400); res.end('Missing id'); return; }
+
+  try {
+    const { MercadoPagoConfig, Payment } = require('mercadopago');
+    const client = new MercadoPagoConfig({ accessToken: process.env.MP_ACCESS_TOKEN });
+    const payment = await new Payment(client).get({ id });
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ status: payment.status, status_detail: payment.status_detail }));
+  } catch (err) {
+    console.error('[MP] Erro ao checar status:', err.message);
+    res.writeHead(500, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ error: err.message }));
+  }
+}
+
 // ─── Handler de processamento de pagamento ────────────────────────────────────
 async function handleProcessPayment(req, res) {
   if (req.method !== 'POST') {
@@ -194,6 +212,11 @@ const server = http.createServer((req, res) => {
     });
   } else if (req.url.startsWith('/api/process-payment')) {
     handleProcessPayment(req, res).catch(err => {
+      console.error('Erro inesperado:', err);
+      res.writeHead(500); res.end('Internal Server Error');
+    });
+  } else if (req.url.startsWith('/api/payment-status')) {
+    handlePaymentStatus(req, res).catch(err => {
       console.error('Erro inesperado:', err);
       res.writeHead(500); res.end('Internal Server Error');
     });

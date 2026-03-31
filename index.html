@@ -247,7 +247,7 @@
           <div class="mp-pix-pending" id="mp-pix-pending" style="display:none">
             <div class="mp-pix-header">
               <i class="fa-brands fa-pix mp-pix-icon"></i>
-              <h4>Pague com PIX</h4>
+              <h4>Doe com PIX</h4>
               <p>Escaneie o QR Code ou use o código Copia e Cola</p>
             </div>
             <div class="mp-pix-qr">
@@ -262,8 +262,11 @@
                 </button>
               </div>
             </div>
-            <p class="mp-pix-tip"><i class="fa-solid fa-circle-info"></i> Após o pagamento, a doação será confirmada automaticamente.</p>
-            <button class="give-submit-btn" onclick="closeDonateModal()" style="margin-top:16px;width:100%">Fechar</button>
+            <div class="mp-pix-waiting" id="mp-pix-waiting">
+              <div class="mp-spinner" style="width:18px;height:18px;border-width:2px"></div>
+              <span>Aguardando Doação...</span>
+            </div>
+            <button class="mp-pix-close-btn" onclick="closeDonateModal()" style="margin-top:8px;width:100%">Cancelar</button>
           </div>
 
           <!-- Estado: sucesso -->
@@ -417,6 +420,9 @@
           initialization: {
             amount: selectedAmount,
             preferenceId: preferenceId,
+            payer: {
+              email: 'doador@faroldecristooficial.com.br',
+            },
           },
           customization: {
             paymentMethods: {
@@ -427,6 +433,7 @@
               atm: 'all',
             },
             visual: {
+              hideEmailSection: true,
               texts: {
                 formTitle: 'Meios de doação',
                 formSubmit: 'Doar',
@@ -495,6 +502,43 @@
               };
 
               fixExpiryField();
+
+              // Auto-submit ao selecionar PIX — baseado em clique do usuário
+              let pixAutoSubmitDone = false;
+              let pixClickTimer = null;
+
+              container.addEventListener('click', function(e) {
+                if (pixAutoSubmitDone) return;
+
+                // Sobe até 6 níveis a partir do elemento clicado
+                // procurando texto exato "Pix" ou class/testid contendo "pix"
+                let el = e.target;
+                let isPix = false;
+                for (let i = 0; i < 6; i++) {
+                  if (!el || el === container) break;
+                  const text = (el.textContent || '').trim();
+                  const cls  = (el.className && typeof el.className === 'string' ? el.className : '').toLowerCase();
+                  const tid  = (el.getAttribute ? (el.getAttribute('data-testid') || el.getAttribute('data-cy') || '') : '').toLowerCase();
+                  if (/^pix$/i.test(text) || cls.includes('pix') || tid.includes('pix')) {
+                    isPix = true;
+                    break;
+                  }
+                  el = el.parentElement;
+                }
+
+                if (isPix) {
+                  clearTimeout(pixClickTimer);
+                  pixClickTimer = setTimeout(() => {
+                    if (pixAutoSubmitDone) return;
+                    const submitBtn = container.querySelector('button[type="submit"]');
+                    if (submitBtn) {
+                      pixAutoSubmitDone = true;
+                      submitBtn.click();
+                    }
+                  }, 600);
+                }
+              });
+
               const observer = new MutationObserver(() => {
                 replaceText(container);
                 fixExpiryField();
@@ -535,6 +579,8 @@
                   }
                   document.getElementById('mp-pix-code').textContent = data.pix_qr_code;
                   document.getElementById('mp-pix-pending').style.display = 'flex';
+                  // Inicia polling para detectar pagamento
+                  startPixPolling(data.id);
                 } else if (data.status === 'pending' || data.status === 'in_process') {
                   document.getElementById('mp-success-msg').textContent =
                     'Sua doação está sendo processada. Em breve você receberá a confirmação.';
@@ -606,6 +652,28 @@
       const code = document.getElementById('mp-pix-code').textContent;
       const btn  = document.getElementById('mp-pix-copy-btn');
       copyText(code, btn);
+    }
+
+    let pixPollingTimer = null;
+    function startPixPolling(paymentId) {
+      if (pixPollingTimer) clearInterval(pixPollingTimer);
+      let attempts = 0;
+      const MAX = 60; // 5 minutos (60 x 5s)
+      pixPollingTimer = setInterval(async () => {
+        attempts++;
+        if (attempts > MAX) { clearInterval(pixPollingTimer); return; }
+        try {
+          const res  = await fetch('/api/payment-status?id=' + paymentId);
+          const data = await res.json();
+          if (data.status === 'approved') {
+            clearInterval(pixPollingTimer);
+            document.getElementById('mp-pix-pending').style.display = 'none';
+            document.getElementById('mp-success-msg').textContent =
+              'Sua doação via PIX foi confirmada! Que Deus abençoe sua contribuição.';
+            document.getElementById('mp-success').style.display = 'flex';
+          }
+        } catch (e) { /* ignora erros transitórios */ }
+      }, 5000);
     }
 
     // Header scroll effect
