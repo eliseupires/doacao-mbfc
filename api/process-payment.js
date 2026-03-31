@@ -1,4 +1,4 @@
-const { MercadoPagoConfig, Payment } = require('mercadopago');
+﻿const { MercadoPagoConfig, Payment } = require('mercadopago');
 
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {
@@ -18,11 +18,12 @@ module.exports = async (req, res) => {
 
     const paymentBody = {
       transaction_amount: parseFloat(body.transaction_amount),
-      description: 'Doação — Igreja Farol de Cristo',
+      description: 'Doação – Igreja Farol de Cristo',
       payment_method_id: body.payment_method_id,
       payer: body.payer,
     };
 
+    // Cartão de crédito/débito
     if (body.token) {
       paymentBody.token        = body.token;
       paymentBody.installments = body.installments || 1;
@@ -35,8 +36,12 @@ module.exports = async (req, res) => {
       status:          payment.status,
       status_detail:   payment.status_detail,
       id:              payment.id,
+      // PIX
       pix_qr_code:     payment.point_of_interaction?.transaction_data?.qr_code,
       pix_qr_base64:   payment.point_of_interaction?.transaction_data?.qr_code_base64,
+      // Boleto
+      boleto_url:      payment.transaction_details?.external_resource_url,
+      boleto_barcode:  payment.barcode?.content,
     });
   } catch (error) {
     console.error('Erro ao processar pagamento MP:', error);

@@ -269,6 +269,28 @@
             <button class="mp-pix-close-btn" onclick="closeDonateModal()" style="margin-top:8px;width:100%">Cancelar</button>
           </div>
 
+          <!-- Estado: boleto pendente -->
+          <div class="mp-boleto-pending" id="mp-boleto-pending" style="display:none">
+            <div class="mp-pix-header">
+              <i class="fa-solid fa-barcode" style="font-size:2rem;color:var(--blue-dark);margin-bottom:8px"></i>
+              <h4>Boleto Bancário</h4>
+              <p>Pague o boleto até a data de vencimento para confirmar sua doação.</p>
+            </div>
+            <div class="mp-boleto-barcode-wrap">
+              <p class="mp-pix-copy-label">Código de Barras</p>
+              <div class="mp-pix-copy-box">
+                <span id="mp-boleto-barcode"></span>
+                <button class="btn-copy" id="mp-boleto-copy-btn" onclick="copyBoletoCode()">
+                  <i class="fa-solid fa-copy"></i> Copiar
+                </button>
+              </div>
+            </div>
+            <a id="mp-boleto-url" href="#" target="_blank" class="give-submit-btn" style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:12px;width:100%;text-decoration:none">
+              <i class="fa-solid fa-file-invoice"></i> Abrir / Imprimir Boleto
+            </a>
+            <button class="mp-pix-close-btn" onclick="closeDonateModal()" style="margin-top:8px;width:100%">Fechar</button>
+          </div>
+
           <!-- Estado: sucesso -->
           <div class="mp-success" id="mp-success" style="display:none">
             <div class="mp-success-icon"><i class="fa-solid fa-circle-check"></i></div>
@@ -350,8 +372,10 @@
       const customWrap = document.getElementById('give-custom-wrap');
       if (value === 'custom') {
         customWrap.style.display = 'flex';
-        const customVal = parseFloat(document.getElementById('give-custom-value').value);
+        const customInput = document.getElementById('give-custom-value');
+        const customVal = parseFloat(customInput.value);
         selectedAmount = customVal > 0 ? customVal : 0;
+        setTimeout(() => { customInput.focus(); customInput.select(); }, 50);
       } else {
         customWrap.style.display = 'none';
         selectedAmount = value;
@@ -581,6 +605,10 @@
                   document.getElementById('mp-pix-pending').style.display = 'flex';
                   // Inicia polling para detectar pagamento
                   startPixPolling(data.id);
+                } else if ((data.status === 'pending' || data.status === 'in_process') && data.boleto_url) {
+                  document.getElementById('mp-boleto-url').href = data.boleto_url;
+                  document.getElementById('mp-boleto-barcode').textContent = data.boleto_barcode || '';
+                  document.getElementById('mp-boleto-pending').style.display = 'flex';
                 } else if (data.status === 'pending' || data.status === 'in_process') {
                   document.getElementById('mp-success-msg').textContent =
                     'Sua doação está sendo processada. Em breve você receberá a confirmação.';
@@ -630,9 +658,10 @@
         document.getElementById('mp-modal-overlay').classList.remove('open');
         document.body.style.overflow = '';
         // Reseta todos os estados
-        document.getElementById('mp-pix-pending').style.display = 'none';
-        document.getElementById('mp-success').style.display    = 'none';
-        document.getElementById('mp-config-error').style.display = 'none';
+        document.getElementById('mp-pix-pending').style.display    = 'none';
+        document.getElementById('mp-boleto-pending').style.display = 'none';
+        document.getElementById('mp-success').style.display         = 'none';
+        document.getElementById('mp-config-error').style.display    = 'none';
       }
     }
 
@@ -651,6 +680,12 @@
     function copyPixCode() {
       const code = document.getElementById('mp-pix-code').textContent;
       const btn  = document.getElementById('mp-pix-copy-btn');
+      copyText(code, btn);
+    }
+
+    function copyBoletoCode() {
+      const code = document.getElementById('mp-boleto-barcode').textContent;
+      const btn  = document.getElementById('mp-boleto-copy-btn');
       copyText(code, btn);
     }
 

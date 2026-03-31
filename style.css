@@ -915,6 +915,18 @@ img { max-width: 100%; display: block; }
   transition: background var(--transition);
 }
 .mp-pix-close-btn:hover { background: #f1f5f9; }
+
+/* Boleto */
+.mp-boleto-pending {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  padding: 8px 0;
+}
+.mp-boleto-barcode-wrap { width: 100%; }
+
 .mp-success h4 {
   font-family: 'Montserrat', sans-serif;
   font-weight: 800;
