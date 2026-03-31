@@ -32,9 +32,11 @@ module.exports = async (req, res) => {
     const payment = await new Payment(client).create({ body: paymentBody });
 
     return res.status(200).json({
-      status:        payment.status,
-      status_detail: payment.status_detail,
-      id:            payment.id,
+      status:          payment.status,
+      status_detail:   payment.status_detail,
+      id:              payment.id,
+      pix_qr_code:     payment.point_of_interaction?.transaction_data?.qr_code,
+      pix_qr_base64:   payment.point_of_interaction?.transaction_data?.qr_code_base64,
     });
   } catch (error) {
     console.error('Erro ao processar pagamento MP:', error);

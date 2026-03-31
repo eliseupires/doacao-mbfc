@@ -243,6 +243,29 @@
             </a>
           </div>
 
+          <!-- Estado: PIX pendente -->
+          <div class="mp-pix-pending" id="mp-pix-pending" style="display:none">
+            <div class="mp-pix-header">
+              <i class="fa-brands fa-pix mp-pix-icon"></i>
+              <h4>Pague com PIX</h4>
+              <p>Escaneie o QR Code ou use o código Copia e Cola</p>
+            </div>
+            <div class="mp-pix-qr">
+              <img id="mp-pix-qr-img" src="" alt="QR Code PIX" />
+            </div>
+            <div class="mp-pix-copy">
+              <p class="mp-pix-copy-label">Código Copia e Cola</p>
+              <div class="mp-pix-copy-box">
+                <span id="mp-pix-code"></span>
+                <button class="btn-copy" id="mp-pix-copy-btn" onclick="copyPixCode()">
+                  <i class="fa-solid fa-copy"></i> Copiar
+                </button>
+              </div>
+            </div>
+            <p class="mp-pix-tip"><i class="fa-solid fa-circle-info"></i> Após o pagamento, a doação será confirmada automaticamente.</p>
+            <button class="give-submit-btn" onclick="closeDonateModal()" style="margin-top:16px;width:100%">Fechar</button>
+          </div>
+
           <!-- Estado: sucesso -->
           <div class="mp-success" id="mp-success" style="display:none">
             <div class="mp-success-icon"><i class="fa-solid fa-circle-check"></i></div>
@@ -502,6 +525,16 @@
                   document.getElementById('mp-success-msg').textContent =
                     'Sua doação foi confirmada! Que Deus abençoe sua contribuição.';
                   document.getElementById('mp-success').style.display = 'flex';
+                } else if ((data.status === 'pending' || data.status === 'in_process') && data.pix_qr_code) {
+                  // Exibe QR Code PIX diretamente no modal
+                  const qrImg = document.getElementById('mp-pix-qr-img');
+                  if (data.pix_qr_base64) {
+                    qrImg.src = 'data:image/png;base64,' + data.pix_qr_base64;
+                  } else {
+                    qrImg.src = 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' + encodeURIComponent(data.pix_qr_code);
+                  }
+                  document.getElementById('mp-pix-code').textContent = data.pix_qr_code;
+                  document.getElementById('mp-pix-pending').style.display = 'flex';
                 } else if (data.status === 'pending' || data.status === 'in_process') {
                   document.getElementById('mp-success-msg').textContent =
                     'Sua doação está sendo processada. Em breve você receberá a confirmação.';
@@ -550,6 +583,10 @@
       if (!e || e.target === document.getElementById('mp-modal-overlay') || !e.target.closest) {
         document.getElementById('mp-modal-overlay').classList.remove('open');
         document.body.style.overflow = '';
+        // Reseta todos os estados
+        document.getElementById('mp-pix-pending').style.display = 'none';
+        document.getElementById('mp-success').style.display    = 'none';
+        document.getElementById('mp-config-error').style.display = 'none';
       }
     }
 
@@ -563,6 +600,12 @@
           btn.classList.remove('copied');
         }, 2000);
       });
+    }
+
+    function copyPixCode() {
+      const code = document.getElementById('mp-pix-code').textContent;
+      const btn  = document.getElementById('mp-pix-copy-btn');
+      copyText(code, btn);
     }
 
     // Header scroll effect

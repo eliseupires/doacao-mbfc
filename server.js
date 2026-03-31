@@ -139,9 +139,11 @@ async function handleProcessPayment(req, res) {
 
     res.writeHead(200, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({
-      status:        payment.status,
-      status_detail: payment.status_detail,
-      id:            payment.id,
+      status:          payment.status,
+      status_detail:   payment.status_detail,
+      id:              payment.id,
+      pix_qr_code:     payment.point_of_interaction?.transaction_data?.qr_code,
+      pix_qr_base64:   payment.point_of_interaction?.transaction_data?.qr_code_base64,
     }));
   } catch (err) {
     console.error('[MP] Erro ao processar pagamento:', err);
